@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="7dd26077-8579-4e22-914b-a7aeda601c39" name="Xamp" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\xampp\htdocs\faith-restaurant" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
