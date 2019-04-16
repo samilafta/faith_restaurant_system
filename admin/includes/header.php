@@ -1,11 +1,9 @@
 <?php
 
-global $connect;
-$sql = "SELECT COUNT(*) AS `count` FROM `messages`";
-$result = $connect->query($sql);
-
-$row = $result->fetch_assoc();
-$countMail = $row['count'];
+if (!isset($_SESSION['email']))   {
+    redirect("../index.php");
+    exit();
+}
 
 ?>
 
@@ -51,7 +49,7 @@ $countMail = $row['count'];
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <b><i class="fa fa-user"></i>
-                <span class="hidden-md-down">Admin</span></b>
+                <span class="hidden-md-down"><?php echo  $_SESSION['full_name']; ?></span></b>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item" href="../adminlogout.php"><i class="fa fa-lock"></i> Logout</a>
@@ -69,22 +67,38 @@ $countMail = $row['count'];
 
         <nav class="sidebar-nav">
             <ul class="nav">
-                <li class="nav-title">Dashboard</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php"><i class="fa fa-dashboard"></i> Dashboard </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="menu.php"><i class="fa fa-cutlery"></i> Menu </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="customers.php"><i class="fa fa-users"></i> Customers </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="mail.php"><i class="fa fa-envelope-o"></i> Mail <span class="badge badge-primary"><?php echo $countMail; ?></span></a>
-                </li>
-                <li class="nav-item">
+                <?php 
+                    if($_SESSION['level'] == "admin"){
+                        ?>
+                            <li class="nav-title">Dashboard</li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php"><i class="fa fa-dashboard"></i> Dashboard </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="bookings.php"><i class="fa fa-bookmark"></i> Bookings </a>
+                            </li>
+                           
+                            <li class="nav-item">
+                                <a class="nav-link" href="customers.php"><i class="fa fa-users"></i> Customers </a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link" href="staff.php"><i class="fa fa-user"></i> Staff </a>
+                            </li>
+                        <?php
+                    } else{
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="requests.php"><i class="fa fa-clipboard"></i> Requests </a>
+                            </li>
+
+                        <?php
+                    }
+
+                 ?>
+                
+                 <!-- <li class="nav-item">
                     <a class="nav-link" href="reports.php"><i class="fa fa-clipboard"></i> Reports </a>
-                </li>
+                </li> -->
 
             </ul>
         </nav>

@@ -9,7 +9,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "faith_restaurant";
+$dbname = "api";
 
 // create connection
 $connect = new Mysqli($servername, $username, $password, $dbname);

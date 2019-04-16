@@ -56,9 +56,9 @@ function registerUser($fname, $uname, $email, $pwd, $address, $tel) {
 
 // function for entering a new menu
 
-function addMenu($mname, $mimg, $mcat, $mprice)  {
+function addStaff($name, $email, $level, $phone, $password)  {
     global $connect;
-    $sql = "INSERT INTO `menu` (`menu_id`, `menu_name`, `menu_img`, `menu_category`, `menu_price`, `date_added`) VALUES (NULL, '$mname', '$mimg', '$mcat', '$mprice', CURRENT_TIMESTAMP)";
+    $sql = "INSERT INTO `staff` (`staffID`, `full_name`, `staff_email`, `password`, `mobile_number`, `level`, `created_at`) VALUES (NULL, '$name', '$email', '$password', '$phone', '$level', CURRENT_TIMESTAMP)";
     $query = $connect->query($sql);
     if ($query)   {
         return true;

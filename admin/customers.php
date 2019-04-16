@@ -1,10 +1,10 @@
 <?php
 require_once "../core/init.php";
 
-if (!isset($_SESSION['admin_uname']))   {
-    redirect("../adminlogin.php");
-    exit();
-}
+// if (!isset($_SESSION['admin_uname']))   {
+//     redirect("../adminlogin.php");
+//     exit();
+// }
 
 ?>
 
@@ -34,43 +34,36 @@ if (!isset($_SESSION['admin_uname']))   {
                     </div>
                 </div>
                 <div class="card-block">
-                    <table class="table table-striped dataTable">
+                    <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>#</th>
                             <th>Full Name</th>
-                            <th>Username</th>
                             <th>Email</th>
-                            <th>Address</th>
+                            <!-- <th>Address</th> -->
                             <th>Contact #</th>
-                            <th>Date Registered</th>
+                            <!-- <th>Date Registered</th> -->
                         </tr>
                         </thead>
                         <tbody>
                         <?php
 
                         global $connect;
-                        $sql = "SELECT * FROM `customer`";
+                        $sql = "SELECT * FROM `users` ORDER BY id DESC";
                         $result = $connect->query($sql);
                         $i = 1;
                         while ($row = $result->fetch_array()) {
-                        $cid = $row['cus_id'];
-                        $cfname = $row['cus_fname'];
-                        $cuname = $row['cus_uname'];
-                        $cemail = $row['cus_email'];
-                        $cadd = $row['cus_address'];
-                        $ctel = $row['cus_tel'];
-                        $cdate = $row['date_registered'];
+                        $cid = $row['id'];
+                        $cfname = $row['firstname']. " ". $row['lastname'];
+                        $cemail = $row['email'];
+                        $ctel = $row['phone_number'];
                         ?>
 
                         <tr>
                             <td><?php echo $i ?></td>
                             <td><?php echo $cfname; ?></td>
-                            <td><?php echo $cuname; ?></td>
                             <td><?php echo $cemail; ?></td>
-                            <td><?php echo $cadd; ?></td>
                             <td><?php echo $ctel; ?></td>
-                            <td><?php echo $cdate; ?></td>
                         </tr>
 
                             <?php

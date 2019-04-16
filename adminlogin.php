@@ -13,11 +13,11 @@ if (isset($_POST['adminlogin'])) {
     $uname = validate($_POST['uname']);
     $pwd = $_POST['pwd'];
 
-    $sql = "SELECT * FROM admin WHERE admin_fname = '$uname' AND admin_password = '$pwd'";
+    $sql = "SELECT * FROM users WHERE email = '$uname' AND password = '$pwd'";
     $run = $connect->query($sql);
     if ($run->num_rows == 1)   {
         $fetch = $run->fetch_array();
-        $_SESSION['admin_uname'] = $fetch['admin_fname'];
+        $_SESSION['admin_uname'] = $fetch['firstname'];
         redirect("admin/index.php");
     }   else    {
         $error = "Your username or password is incorrect!";
@@ -38,7 +38,7 @@ if (isset($_POST['adminlogin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- <link rel="shortcut icon" href="assets/ico/favicon.png"> -->
 
-    <title>Faith Restaurant | Admin Login</title>
+    <title>WASTEK SERVICES | Admin Login</title>
 
     <!-- Icons -->
     <link href="admin/assets/css/font-awesome.min.css" rel="stylesheet">
@@ -73,7 +73,7 @@ if (isset($_POST['adminlogin'])) {
                             <div class="input-group mb-1">
                                 <span class="input-group-addon"><i class="icon-user"></i>
                                 </span>
-                                <input name="uname" class="form-control" placeholder="Username" required>
+                                <input type="email" name="uname" class="form-control" placeholder="Username" required>
                             </div>
                             <div class="input-group mb-2">
                                 <span class="input-group-addon"><i class="icon-lock"></i>
@@ -92,7 +92,7 @@ if (isset($_POST['adminlogin'])) {
                 <div class="card card-inverse card-primary py-3 hidden-md-down" style="width:44%; ">
                     <div class="card-block text-center">
                         <div>
-                            <h2>FAITH RESTAURANT</h2>
+                            <h2>WASTEK SERVICES</h2>
                             <p>ADMINISTRATOR LOGIN</p>
                         </div>
                     </div>

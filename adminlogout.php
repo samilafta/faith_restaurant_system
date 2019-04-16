@@ -1,8 +1,11 @@
 <?php
 require_once "core/init.php";
 
-unset($_SESSION['admin_uname']);
+unset($_SESSION['email']);
+unset($_SESSION['full_name']);
+unset($_SESSION['staffID']);
+unset($_SESSION['level']);
 session_destroy();
 
-redirect("adminlogin.php");
+redirect("index.php");
 exit;
